@@ -1,6 +1,4 @@
-print('Digite o seu nome: ')
-print('Digite sua idade: ')
-
-idade =imp
-
-if idade> 18
+nota1(int(input('Digite a primeira nota: '))
+nota2(int(input('Digite a segundo nota: '))
+nota3(int(input('Digite a tereiro nota: '))
+nota4(int(input('Digite a quarta nota: '))
