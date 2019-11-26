@@ -12,12 +12,12 @@
 #     print (f'{i}-Pares')
 
 lista = ['Mateus','Matheus','Marcela','Nicole','Tonho','Pablo']
-# for i in range (0,6):
-#     print(lista[i])
+for i in range (0,6):
+    print(lista[i])
 
-# lista.append('Natan')
-# for sortudo in lista:
-#     print(lista[i])
+lista.append('Natan')
+for sortudo in lista:
+    print(lista[i])
 
 numero = 10
 for i in range (0,11)

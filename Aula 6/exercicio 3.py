@@ -23,4 +23,4 @@ for aluno in lista_alnos:
     n3 += 4
     n4 += 4
 
-print(f' Resultado: {resultado}')
+print(f'Resultado: {resultado}')
