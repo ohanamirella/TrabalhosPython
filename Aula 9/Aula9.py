@@ -1,55 +1,32 @@
 # Aula 9 - 19-11-2019
-#--- Web2
+#--- Crie um programa que:
+#--- 1- Leia dois numeros inteiros
+#--- 2- Calcule a soma entre os dois numeros atraves de um metodo
+#--- 3- Calcule a subtracao entre os dois numeros atraves de um metodo
+#--- 4- Calcule a multiplicacao entre os dois numeros atraves de um metodo
+#--- 5- Calcule a divisao inteira entre os dois numeros atraves de um metodo
+#--- 6- Calcule a divisao fracionada entre os dois numeros atraves de um metodo
+#--- 7- Calcule resto da divisao entre os dois numeros atraves de um metodo
+#--- 8- Calcule a raiz entre os dois numeros atraves de um metodo
+#--- 9- Separa os metodos em outro arquivo 
 
-from calculo_imposto import
+#--- soma Tarcisio
+#--- subtracao Vitor
+#--- multi Nathan
+#--- div int Victor
+#--- div frac Pedro
+#--- resto Renan
+#--- raiz George
 
-def calculo_inss():
-    if(salario > 0 and salario <= 1751.81):
-        inss = salario * 0.08
-    elif (salario > 1751.81 and salario <= 2919.72):
-        inss = salario * 0.09
-    elif (salario > 2919.72 and salario <= 5839.45):
-        inss = salario *0.11
-    else:
-        inss = 642.3395
+from calculo import soma, subtracao, multiplicacao, div, divF, restodiv, raiz
 
-def calculo_irrf():
+n1 = int(input('\n Digite um numero: '))
+n2 = int(input('\n Digite outro numero: '))
 
-
-nome_completo = input('Digite seu nome completo:')
-cpf = input('Diqite seu CPF:')
-num_registro = int(input('Digite seu registro: '))
-cargo = input ('Digite seu cargo')
-salario = int(input('Digite seu sálario'))
-
-if(salario > 0 and salario <= 1751.81):
-    inss = salario * 0.08
-elif (salario > 1751.81 and salario <= 2919.72):
-    inss = salario * 0.09
-elif (salario > 2919.72 and salario <= 5839.45):
-    inss = salario *0.11
-else:
-    inss = 642.3395
-
-salario_liquido = salario
-
-if(salario >1903.98 and salario <= 12826.65):
-    inss = (((salario - inss )* 0.075)-142.80)
-elif (salario >2826.66 and salario <= 3751.05):
-    inss = ((salario - inss ))* 0.15)-354.80)
-elif ((salario > 3751.05 and  <= 4664.68)):
-    inss =(((salario - inss ) *0.225)-636.13)
-elif (((salario > 4664.68)- 869.36*)0.275)869.36):
-    inss =(salario - inss )*0.275
-else:
-    inss = 642.3395
-
-
-salario_liquido = salario - inss -irrf
-
-print(f'INSS :{inss}')
-print(f'IRRF: {irrf}')
-print(f'Seu salário liquido é {salario_liquido}')
-
-
-print('\n')
+print(f'\n A soma entre {n1} e {n2} é: {soma(n1,n2)}')
+print(f'\n A subtração entre {n1} e {n2} é: {subtracao(n1,n2)}')
+print(f'\n A multiplicaçao entre {n1} e {n2} é: {multiplicacao(n1,n2)}')
+print(f'\n A divisao inteira entre {n1} e {n2} é: {div(n1,n2)}')
+print(f'\n A divisão fracionária entre {n1} e {n2} é: {divF(n1,n2)}')
+print(f'\n O resto da divisão entre {n1} e {n2} é: {restodiv(n1,n2)}')
+print(f'\n A raiz é: {raiz(n1,n2)}')
