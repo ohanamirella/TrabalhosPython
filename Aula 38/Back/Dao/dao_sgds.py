@@ -1,52 +1,54 @@
 import MySQLdb
-from Model.sgds import sgds
+from Model.sgbds_model import SgbdsModel
 
-class FrameworkDao:
-    conexao = MySQLdb.connect(host='mysql.padawans.dev', database='padawans', user='padawans', passwd='ts2019')
+class SgbdsDao:
+
+    conexao = MySQLdb.connect(host='mysql.padawans.dev', database='padawans', user='padawans', passwd='vm2019')
     cursor = conexao.cursor()
 
-    def listar_todos(self):
-        comando = f"SELECT * FROM TB_SGDS AS S LEFT JOIN TB_EQUIPE AS E ON F.ID_SGDS = E.ID_EQUIPE"
-        self.cursor.execute(comando)
-        resultado = self.cursor.fetchall()
-        return resultado
-    
-    def buscar_por_id(self, id):
-        comando = f"SELECT * FROM TB_SGDS AS S LEFT JOIN TB_SGDS AS E ON F.ENDERECO_ID = E.ID WHERE L.ID = {id}"
-        self.cursor.execute(comando)
-        resultado = self.cursor.fetchone()
-        return resultado
-
-    def salvar(self, sgds:Sgds:
-        comando = f""" INSERT INTO TB_SGDS
-        (
-            ID,
-            SGDS,
-            DESC
-        )
-        VALUES
-        (
-            '{sgds.id}',
-            '{sgds.sgbd}',
-            {sgds.desc},
-        )"""
-        self.cursor.execute(comando)
-        self.conexao.commit()
-        id_inserido = self.cursor.lastrowid
-        return id_inserido
-
-    def alterar(self, sgds:Sgds):
-        comando = f""" UPDATE TB_SGDS
-        SET
-            ID = '{sgds.id}',
-            SGDS ='{sgds.sgds}',
-            DESC = {sgds.desc}
-        WHERE ID = {sgds.id}
+    def insert(self, sgbds:SgbdsModel):
+        inserir = f""" 
+            INSERT INTO tb_sgbds (
+                id_sgbds,
+                sgbd, 
+                desc_sgbd
+            )
+            VALUES (
+                {sgbds.id_sgbds},
+                '{sgbds.sgbd}',
+                '{sgbds.desc_sgbd}'
+            )
         """
-        self.cursor.execute(comando)
+        self.cursor.execute(inserir)
+        self.conexao.commit()
+        id_sgbds_inserido = self.cursor.lastrowid
+        return id_sgbds_inserido
+
+    def read(self, id):
+        ler = f""" 
+            SELECT * FROM tb_sgbds
+            WHERE id_sgbds = {id}
+        """
+        self.cursor.execute(ler)
+        lido = self.cursor.fetchall()
+        return lido
+
+    def update(self, sgbds:SgbdsModel):
+        atualizar = f"""
+            UPDATE tb_sgbds 
+            SET 
+                id_sgbds = {sgbds.id_sgbds}
+                sgbds = '{sgbds.sgbds}'
+                desc_sgbds = '{sgbds.desc_sgbds}'
+            WHERE id_sgbds = {sgbds.id_sgbds}
+        """
+        self.cursor.execute(atualizar)
         self.conexao.commit()
 
-    def deletar(self, id):
-        comando = f"DELETE FROM TB_SGDS WHERE ID = {id}"
-        self.cursor.execute(comando)
+    def delete(self, id):
+        deletar = f""" 
+            DELETE FROM tb_sgbds
+            WHERE id_sgbds = {id}
+        """
+        self.cursor.execute(deletar)
         self.conexao.commit()

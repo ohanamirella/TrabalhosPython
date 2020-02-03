@@ -1,53 +1,52 @@
 import MySQLdb
-from Model.linguagem import linguagem
+from Model.linguagem_model import LinguagemBeckModel
 
-class FrameworkDao:
-    conexao = MySQLdb.connect(host='mysql.padawans.dev', database='padawans', user='padawans', passwd='ts2019')
+class LinguagemDao:
+
+    conexao = MySQLdb.connect(host='mysql.padawans.dev', database='padawans', user='padawans', passwd='vm2019')
     cursor = conexao.cursor()
 
-    def listar_todos(self):
-        comando = f"SELECT * FROM TB_LINGUAGEM AS L LEFT JOIN TB_EQUIPE AS E ON F.ID_LINGUAGEM = E.ID_EQUIPE"
-        self.cursor.execute(comando)
-        resultado = self.cursor.fetchall()
-        return resultado
-    
-    def buscar_por_id(self, id):
-        comando = f"SELECT * FROM TB_LINGUAGEM AS L LEFT JOIN TB_LINGUAGEM AS E ON F.ENDERECO_ID = E.ID WHERE L.ID = {id}"
-        self.cursor.execute(comando)
-        resultado = self.cursor.fetchone()
-        return resultado
-
-    def salvar(self, framework:Framework):
-        comando = f""" INSERT INTO TB_LINGUAGEM
-        (
-            ID,
-            NOME,
-            DESC
-        )
-        VALUES
-        (
-            '{linguagem.id}',
-            '{linguagem.sgbd}',
-            {linguagem.desc},
-        )"""
-        self.cursor.execute(comando)
-        self.conexao.commit()
-        id_inserido = self.cursor.lastrowid
-        return id_inserido
-
-    def alterar(self, linguagem:Linguagem):
-        comando = f""" UPDATE TB_LINGUAGEM
-        SET
-            ID = '{linguagem.id}',
-            NOME ='{linguagem.nome}',
-            IDADE = {linguagem.idade},
-            DESC = {linguagem.desc}
-        WHERE ID = {linguagem.id}
+    def insert(self, linguagem:LinguagemBeckModel):
+        inserir = f""" 
+            INSERT INTO tb_linguagem (
+                nome_linguagem, 
+                desc_linguagem
+            )
+            VALUES (
+                {linguagem.id_linguagem},
+                '{linguagem.nome_linguagem}',
+                '{linguagem.desc_linguagem}'
+            )
         """
-        self.cursor.execute(comando)
+        self.cursor.execute(inserir)
+        self.conexao.commit()
+        id_linguagem_inserido = self.cursor.lastrowid
+        return id_linguagem_inserido
+
+    def read(self, id):
+        ler = f""" 
+            SELECT * FROM tb_linguagem
+            WHERE id_linguagem = {id}
+        """
+        self.cursor.execute(ler)
+        lido = self.cursor.fetchall()
+        return lido
+
+    def update(self, linguagem:LinguagemBeckModel):
+        atualizar = f"""
+            UPDATE tb_equipe 
+            SET 
+                nome_linguagem = {linguagem.nome_linguagem}
+                desc_linguagem = {linguagem.desc_linguagem}
+            WHERE id_linguagem = {linguagem.id_linguagem}
+        """
+        self.cursor.execute(atualizar)
         self.conexao.commit()
 
-    def deletar(self, id):
-        comando = f"DELETE FROM TB_LINGUAGEM WHERE ID = {id}"
-        self.cursor.execute(comando)
+    def delete(self, id):
+        deletar = f""" 
+            DELETE FROM tb_linguagem
+            WHERE id_linguagem = {id}
+        """
+        self.cursor.execute(deletar)
         self.conexao.commit()

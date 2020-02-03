@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{titulo_app}} - Cadastrar</title>
+    <link rel="stylesheet" href="../static/estilo.css">
+</head>
+<body>
+    <div class="conteudo">
+        <form action="/salvar" method="get">
+            <input type="hidden" name="id_equipe" id="id_equipe" value="{{equipe.id_equipe}}"> <br/>
+            
+            <div class="descricoes"> 
+                <label for="nome_equipe">Nome Equipe:</label>
+            </div>
+            <input type="text" name="nome_equipe" id="nome_equipe" placeholder="Digite o nome da equipe" value="{{equipe.nome_equipe}}"> <br/>
+            
+            <div class="descricoes"> 
+                <label for="numero_equipe">Número da Equipe:</label>
+            </div>
+            <input type="text" name="numero_equipe" id="numero_equipe" placeholder="Digite o número da equipe" value="{{equipe.numero_equipe}}"> <br/>
+                
+            <div class="descricoes"> 
+                <label for="descricao_equipe">Descrição da Equipe:</label>
+            </div>
+            <input type="text" name="descricao_equipe" id="descricao_equipe" placeholder="Digite a descrição da equipe" value="{{equipe.descricao_equipe}}"> <br/>
+            
+            <div class="descricoes"> 
+                <label for="nome_linguagem">Nome da Linguagem:</label>
+            </div>
+            <input type="text" name="nome_linguagem" id="nome_linguagem" placeholder="Digite a descrição da equipe" value="{{equipe.linguagem.nome_linguagem}}"> <br/>
+                       
+            <div class="descricoes"> 
+                <label for="desc_linguagem">Descrição da Linguagem:</label>
+            </div>
+            <input type="text" name="desc_linguagem" id="desc_linguagem" placeholder="Digite a descrição da equipe" value="{{equipe.linguagem.desc_linguagem}}"> <br/>
+                           
+            <div class="descricoes"> 
+                <label for="sgbd">Nome do Banco de Dados:</label>
+            </div>
+            <input type="text" name="sgbd" id="sgbd" placeholder="Digite o nome do banco de dados" value="{{equipe.sgbds.sgbd}}"> <br/>
+                            
+            <div class="descricoes"> 
+                <label for="desc_sgbd">Descrição do Banco de Dados:</label>
+            </div>
+            <input type="text" name="desc_sgbd" id="desc_sgbd" placeholder="Digite a descrição do banco de dados" value="{{equipe.sgbds.desc_sgbd}}"> <br/>
+                                
+            <hr/>
+            <input type="submit" value="Salvar" class="salvar">
+            <a href="/cadastrar" class="limpar">Limpar</a>
+        </form>
+    </div>
+</body>
+</html>
